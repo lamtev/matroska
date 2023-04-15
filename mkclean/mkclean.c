@@ -1204,11 +1204,12 @@ static int CleanTracks(ebml_master *Tracks, int srcProfile, int *dstProfile, ebm
 
         if (*dstProfile==PROFILE_WEBM)
         {
-            // verify that we have only VP8, VP9, Opus and Vorbis tracks
+            // verify that we have only VP8, VP9, AV1, Opus and Vorbis tracks
             Elt = EBML_MasterFindChild(CurTrack,MATROSKA_getContextCodecID());
             EBML_StringGet((ebml_string*)Elt,CodecID,TSIZEOF(CodecID));
             if (!((TrackType==MATROSKA_TRACK_TYPE_VIDEO && tcsisame_ascii(CodecID,T("V_VP8"))) ||
                   (TrackType==MATROSKA_TRACK_TYPE_VIDEO && tcsisame_ascii(CodecID,T("V_VP9"))) ||
+                  (TrackType==MATROSKA_TRACK_TYPE_VIDEO && tcsisame_ascii(CodecID,T("V_AV1"))) ||
                   (TrackType==MATROSKA_TRACK_TYPE_AUDIO && tcsisame_ascii(CodecID,T("A_VORBIS"))) ||
                   (TrackType==MATROSKA_TRACK_TYPE_AUDIO && tcsisame_ascii(CodecID,T("A_OPUS")))
                 ))
